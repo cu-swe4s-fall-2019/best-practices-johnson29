@@ -1,19 +1,53 @@
-import sys, math
+import sys
+import math
+import argparse as ap
 
-file_name = sys.argv[1]
-col_num = int(sys.argv[2])
 
-f = open(file_name, 'r')
+def parse():  # parses arguments 
+    parser = ap.ArgumentParser()
 
-V = []
+    parser.add_argument('-i',
+                        '--filen',
+                        type=str,
+                        required=True)
 
-for l in f:
-    A = [int(x) for x in l.split()]
-    V.append(A[col_num])
+    parser.add_argument('-c',
+                        '--colnum',
+                        type=int,
+                        required=True)
 
-mean = sum(V)/len(V)
+    return parser.parse_args()
 
-stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
 
-print('mean:', mean)
-print('stdev:', stdev)
+def main():
+    args = parse()
+    filename = args.filen
+    col_num = args.colnum - 1  # since column starts at 0
+    mean = 0
+    stdev = 0
+
+    V = []  # create vector
+    try:
+        file = open(args.filen, 'r')  # open file, with check
+    except Exception:
+        print('file open error')
+        sys.exit(1)
+
+    if col_num < 1:  #column number check, with error message
+        print('invalid column #')
+        sys.exit(1)
+
+    for l in file:
+        A = [int(x) for x in l.split()]  # reads in
+        try:
+            V.append(A[col_num])
+            stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+        finally:
+            mean = sum(V)/len(V)
+            stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+    print('mean:', mean)
+    print('stdev:', stdev)
+
+
+if __name__ == "__main__":
+    main()
