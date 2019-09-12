@@ -1,48 +1,66 @@
 import os
 import sys
 
+
 def one(): print('one')
+
+
 def two(): print('two')
+
+
 def three(): print('three')
+
+
 def four(): print('four')
-def five(a,b,c,d,e): print(a,b,c,d,e)
+
+
+def five(a, b, c, d, e): print(a, b, c, d, e)
+
+
 def throw(): raise Exception('threw')
+
+
 def oops(): print('oops')
+
 
 def FindSum(var_one, var_two, var_three,
             var_four):
-            s = (var_one + 
-            var_two + 
-            var_three + 
-            var_four)
-    return s 
+    s = (var_one +
+         var_two +
+         var_three +
+         var_four)
+    return s
 
-def complex(real, imag = 0.0):
-    return magic(r = real, i = imag)
 
-I=1
-O=1
-k=1
-l=1
+def complex(real, imag=0.0):
+    return magic(r=real, i=imag)
+
+
+Is = 1
+Od = 1
+ka = 1
+lf = 1
 
 s = FindSum(I, O,
-    k, l)
+            k, l)
 
-print ( s )
+print(s)
 
-A = [1,2,3,4,5]
+A = [1, 2, 3, 4, 5]
 
-print(A[1],{'foo': 2})
+print(A[1], {'foo': 2})
 
 x = 1
 y = 2
 
-if x == 4: print (x, y); x, y = y, x
+if x == 4:
+    print(x, y)
+    x, y = y, x
 
 dct = {}
-lst = [1,2,3,4]
+lst = [1, 2, 3, 4]
 index = 3
-dct ['key'] = lst [index]
+dct['key'] = lst[index]
 
 x = 1
 y = 2
@@ -60,19 +78,23 @@ x = (x+y) * (x-y)
 
 foo = 'blah'
 if foo == 'blah':
-one()
-two()
-three()
-four()
+    one()
+    two()
+    three()
+    four()
 
 foo = 'non_blah'
 if foo == 'blah':
-    :four()
-else: one()
+    : four()
+else:
+    one()
 
-try: throw()
-except: oops()
-finally: one()
+try:
+    throw()
+except Exception:
+    oops()
+finally:
+    one()
     one()
     two()
     five(I, O, k, l, x)
