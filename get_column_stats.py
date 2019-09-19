@@ -3,7 +3,7 @@ import math
 import argparse as ap
 
 
-def parse():  # parses arguments 
+def parse():  # parses arguments
     parser = ap.ArgumentParser()
 
     parser.add_argument('-i',
@@ -17,6 +17,25 @@ def parse():  # parses arguments
                         required=True)
 
     return parser.parse_args()
+
+
+def stringcheck(V):
+    return isinstance(V, int)
+
+
+def getmean(V):
+    if (len(V) == 0):
+        return None
+    else:
+        mean = sum(V)/len(V)
+        return mean
+
+
+def getsd(V, mean):
+    if (len(V) == 0):
+        return None
+    sd = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+    return sd
 
 
 def main():
@@ -33,7 +52,7 @@ def main():
         print('file open error')
         sys.exit(1)
 
-    if col_num < 1:  #column number check, with error message
+    if col_num < 1:  # column number check, with error message
         print('invalid column #')
         sys.exit(1)
 

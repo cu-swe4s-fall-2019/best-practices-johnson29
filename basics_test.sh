@@ -11,6 +11,18 @@ done )> data.txt
 
 python get_column_stats.py -i data.txt -c 2
 
+run Rtest1 python get_column_stats.py  -i data.txt -c 2 
+assert_stdout
+assert_exit_code 0
+
+run Rtest2 python get_column_stats.py -i data.txt -c 0
+assert_in_stdout "invalid column #"
+assert_exit_code 1
+
+run Rtest3 python get_column_stats.py -i whatever.txt -c 3
+assert_in_stdout "file open error"
+assert_exit_code 1
+
 
 V=1
 (for i in `seq 1 100`; do 
@@ -31,3 +43,7 @@ assert_exit_code 1
 run test3 python get_column_stats.py -i whatever.txt -c 3
 assert_in_stdout "file open error"
 assert_exit_code 1
+
+
+
+
